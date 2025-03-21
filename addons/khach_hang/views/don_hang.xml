@@ -1,0 +1,62 @@
+<odoo>
+    <!-- Form View -->
+    <record id="view_don_hang_form" model="ir.ui.view">
+        <field name="name">don_hang_form</field>
+        <field name="model">don_hang</field>
+        <field name="arch" type="xml">
+            <form string="Đơn Hàng">
+                <sheet>
+                    <group>
+                        <field name="ma_don_hang" readonly="1"/>
+                        <field name="khach_hang_id"/>
+                        <field name="san_pham_id"/>
+                        <field name="so_luong"/>
+                        <field name="tong_tien" readonly="1"/>
+                        <field name="ngay_ban" />
+                        <field name="nguoi_ban_id"/>
+                        <field name="ghi_chu"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_don_hang_tree" model="ir.ui.view">
+        <field name="name">don_hang_tree</field>
+        <field name="model">don_hang</field>
+        <field name="arch" type="xml">
+            <tree string="Đơn Hàng">
+                <field name="ma_don_hang"/>
+                <field name="khach_hang_id"/>
+                <field name="san_pham_id"/>
+                <field name="so_luong"/>
+                <field name="tong_tien"/>
+                <field name="ngay_ban"/>
+                <field name="nguoi_ban_id"/>
+                <field name="ghi_chu"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Graph View -->
+    <record id="view_don_hang_graph" model="ir.ui.view">
+        <field name="name">don_hang_graph</field>
+        <field name="model">don_hang</field>
+        <field name="arch" type="xml">
+            <graph string="Thống Kê Đơn Hàng" type="bar">
+                <field name="khach_hang_id" type="row"/>
+                <field name="tong_tien" type="measure"/>
+                <field name="so_luong" type="measure"/>
+                <field name="ngay_ban" type="col"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Action Window -->
+    <record id="action_don_hang" model="ir.actions.act_window">
+        <field name="name">Đơn Hàng</field>
+        <field name="res_model">don_hang</field>
+        <field name="view_mode">tree,form,graph</field>
+    </record>
+</odoo>

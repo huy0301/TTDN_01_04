@@ -1,0 +1,69 @@
+<odoo>
+    <!-- Form View -->
+    <record id="view_ho_tro_form" model="ir.ui.view">
+        <field name="name">ho_tro_form</field>
+        <field name="model">ho_tro</field>
+        <field name="arch" type="xml">
+            <form string="Hỗ trợ khách hàng">
+                <sheet>
+                    <group>
+                        <field name="ma_ho_tro" readonly="1"/>
+                        <field name="khach_hang_id"/>
+                        <field name="nhan_vien_id" />
+                        <field name="nhan_vien_name" />
+                        <field name="hinh_thuc_lien_he"/>
+                    </group>
+                    
+                    <!-- Chọn trạng thái -->
+                    <group>
+                        <field name="cham_soc" widget="radio"/>
+                    </group>
+
+                    <!-- Hiển thị trạng thái màu sắc -->
+                    <group>
+                        <div style="text-align: center; margin-top: 10px;">
+                            <div attrs="{'invisible': [('cham_soc', '!=', 'chua_cham_soc')]}"
+                                 style="background-color: #dc3545; color: white; padding: 10px 20px; 
+                                        border-radius: 20px; display: inline-block; font-size: 16px;">
+                                ❌ CHƯA CHĂM SÓC
+                            </div>
+                            <div attrs="{'invisible': [('cham_soc', '!=', 'da_cham_soc')]}"
+                                 style="background-color: #28a745; color: white; padding: 10px 20px; 
+                                        border-radius: 20px; display: inline-block; font-size: 16px;">
+                                ✅ ĐÃ CHĂM SÓC
+                            </div>
+                        </div>
+                    </group>
+
+                    <group>
+                        <field name="noi_dung"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_ho_tro_tree" model="ir.ui.view">
+        <field name="name">ho_tro_tree</field>
+        <field name="model">ho_tro</field>
+        <field name="arch" type="xml">
+            <tree string="Danh sách hỗ trợ khách hàng">
+                <field name="ma_ho_tro"/>
+                <field name="khach_hang_id"/>
+                <field name="nhan_vien_name" />
+                <field name="hinh_thuc_lien_he"/>
+                <field name="cham_soc" widget="badge"
+                    decoration-danger="cham_soc == 'chua_cham_soc'" 
+                    decoration-success="cham_soc == 'da_cham_soc'"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_ho_tro" model="ir.actions.act_window">
+        <field name="name">Hỗ trợ khách hàng</field>
+        <field name="res_model">ho_tro</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,72 @@
+<odoo>
+    <!-- Form View -->
+    <record id="view_hop_dong_form" model="ir.ui.view">
+        <field name="name">hop_dong_form</field>
+        <field name="model">hop_dong</field>
+        <field name="arch" type="xml">
+            <form string="Hợp Đồng">
+                <sheet>
+                    <group>
+                        <field name="ma_hop_dong" readonly="1" invisible="1"/>
+                        <field name="khach_hang_id"/>
+                        <field name="ngay_ky"/>
+                        <field name="ngay_het_han"/>
+                        <field name="gia_tri"/>
+                        <field name="trang_thai"/>
+                    </group>
+                    <group>
+                        <div style="text-align: center; margin-top: 10px;">
+                            <!-- Nháp (Màu Xám) -->
+                            <div attrs="{'invisible': [('trang_thai', '!=', 'draft')]}"
+                                 style="background-color: #6c757d; color: white; padding: 10px 20px; 
+                                        border-radius: 20px; display: inline-block; font-size: 16px;">
+                                ⏳ Nháp
+                            </div>
+
+                            <!-- Đang Hiệu Lực (Màu Xanh) -->
+                            <div attrs="{'invisible': [('trang_thai', '!=', 'active')]}"
+                                 style="background-color: #28a745; color: white; padding: 10px 20px; 
+                                        border-radius: 20px; display: inline-block; font-size: 16px;">
+                                ✅ Đang Hiệu Lực
+                            </div>
+
+                            <!-- Hết Hạn (Màu Đỏ) -->
+                            <div attrs="{'invisible': [('trang_thai', '!=', 'expired')]}"
+                                 style="background-color: #dc3545; color: white; padding: 10px 20px; 
+                                        border-radius: 20px; display: inline-block; font-size: 16px;">
+                                ❌ Hết Hạn
+                            </div>
+                        </div>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_hop_dong_tree" model="ir.ui.view">
+        <field name="name">hop_dong_tree</field>
+        <field name="model">hop_dong</field>
+        <field name="arch" type="xml">
+            <tree string="Danh sách Hợp Đồng">
+                <field name="ma_hop_dong"/>
+                <field name="khach_hang_id"/>
+                <field name="ngay_ky"/>
+                <field name="ngay_het_han"/>
+                <field name="gia_tri"/>
+                <field name="trang_thai" widget="badge"
+                    decoration-muted="trang_thai == 'draft'" 
+                    decoration-success="trang_thai == 'active'"
+                    decoration-danger="trang_thai == 'expired'"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action Window -->
+    <record id="action_hop_dong" model="ir.actions.act_window">
+        <field name="name">Hợp Đồng</field>
+        <field name="res_model">hop_dong</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

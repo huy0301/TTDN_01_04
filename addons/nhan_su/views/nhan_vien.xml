@@ -18,12 +18,16 @@
                             <field name="anh" widget="image"/>
                         </group>
                         <notebook>
-                            <page string="Danh sách lịch sử công tác">
-                                <field name="lich_su_cong_tac_ids"/>
+                            <page string="Danh sach lich su cong tac">
+                                <field name="lich_su_cong_tac"/>
+                            </page>
+                        </notebook>
+                        <notebook>
+                            <page string="Danh sach bằng cấp">
+                                <field name="quan_ly_bang_cap"/>
                             </page>
                         </notebook>
                     </sheet>
-                    
                 </form>
             </field>
         </record>
@@ -62,7 +66,9 @@
             <field name="res_model">nhan_vien</field>
             <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref = "nhan_vien_search"/>
+
         </record>
+
     </data>
 </odoo>
         

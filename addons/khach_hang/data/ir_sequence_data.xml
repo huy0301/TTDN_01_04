@@ -1,0 +1,11 @@
+<odoo>
+    <data noupdate="1">
+        <record id="seq_khach_hang_tiem_nang" model="ir.sequence">
+            <field name="name">Mã Khách Hàng Tiềm Năng</field>
+            <field name="code">khach.hang.tiem.nang</field>
+            <field name="prefix">KH-TN-</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

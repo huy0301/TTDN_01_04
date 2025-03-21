@@ -1,0 +1,67 @@
+<odoo>
+    <!-- Form View -->
+    <record id="view_nhiem_vu_form" model="ir.ui.view">
+        <field name="name">nhiem_vu_form</field>
+        <field name="model">nhiem_vu</field>
+        <field name="arch" type="xml">
+            <form string="Nhiệm Vụ">
+                <sheet>
+                    <group>
+                        <field name="ten_nhiem_vu"/>
+                        <field name="mo_ta"/>
+                        <field name="nguoi_giao_viec_id"/>
+                        <field name="khach_hang_id"/>
+                        <field name="ngay_bat_dau"/>
+                        <field name="han_hoan_thanh"/>
+                        <field name="muc_do_uu_tien"/>
+                        <field name="trang_thai"/>
+                    </group>
+                    <group>
+                        <div style="text-align: center; margin-top: 10px;">
+                            <div attrs="{'invisible': [('trang_thai', '!=', 'chua_bat_dau')]}"
+                                 style="background-color: #dc3545; color: white; padding: 10px 20px; 
+                                        border-radius: 20px; display: inline-block; font-size: 16px;">
+                                ❌ Chưa Bắt Đầu
+                            </div>
+                            <div attrs="{'invisible': [('trang_thai', '!=', 'dang_thuc_hien')]}"
+                                 style="background-color: #ffc107; color: black; padding: 10px 20px; 
+                                        border-radius: 20px; display: inline-block; font-size: 16px;">
+                                ⏳ Đang Thực Hiện
+                            </div>
+                            <div attrs="{'invisible': [('trang_thai', '!=', 'da_hoan_thanh')]}"
+                                 style="background-color: #28a745; color: white; padding: 10px 20px; 
+                                        border-radius: 20px; display: inline-block; font-size: 16px;">
+                                ✅ Đã Hoàn Thành
+                            </div>
+                        </div>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_nhiem_vu_tree" model="ir.ui.view">
+        <field name="name">nhiem_vu_tree</field>
+        <field name="model">nhiem_vu</field>
+        <field name="arch" type="xml">
+            <tree string="Danh sách nhiệm vụ">
+                <field name="ten_nhiem_vu"/>
+                <field name="khach_hang_id"/>
+                <field name="ngay_bat_dau"/>
+                <field name="han_hoan_thanh"/>
+                <field name="trang_thai" widget="badge"
+                    decoration-danger="trang_thai == 'chua_bat_dau'"
+                    decoration-warning="trang_thai == 'dang_thuc_hien'"
+                    decoration-success="trang_thai == 'da_hoan_thanh'"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_nhiem_vu" model="ir.actions.act_window">
+        <field name="name">Nhiệm Vụ</field>
+        <field name="res_model">nhiem_vu</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
